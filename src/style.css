@@ -4,8 +4,10 @@
   -moz-osx-font-smoothing: grayscale;
   color: #a7c0da;
   background-color: #050515;
+  margin: 0px auto;
+  overflow: hidden; /* Hide vertical scrollbar */
 }
 
 canvas {
-  border: white 1px solid;
+  margin: 0px;
 }
