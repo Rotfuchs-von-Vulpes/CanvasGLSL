@@ -1,0 +1,11 @@
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #a7c0da;
+  background-color: #050515;
+}
+
+canvas {
+  border: white 1px solid;
+}
