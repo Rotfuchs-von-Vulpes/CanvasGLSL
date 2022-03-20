@@ -11,16 +11,36 @@ float plot(vec2 st){
 	return smoothstep(.02,0.,abs(st.y-st.x));
 }
 
+float size = 0.005;
+
+vec2 convert(vec2 v) {
+	float vx = (v.x - u_resolution.x/2.) * size;
+	float vy = (v.y - u_resolution.y/2.) * size;
+
+	return vec2(vx, vy
+	);
+}
+
+int julia(vec2 p, vec2 c) {
+	float x = p.x;
+	float y = p.y;
+
+	for (int i = 0; i <= 100; i++) {
+		float x1 = x*x - y*y + c.x;
+		float y1 = 2.*x*y + c.y;
+		x = x1; y = y1;
+		if (x*x + y*y > 4.) {
+			return i;
+		}
+	}
+
+	return 0;
+}
+
 void main(){
-	vec2 st=gl_FragCoord.xy/u_resolution;
+	vec2 st=gl_FragCoord.xy;
 	
-	float y=st.x;
+	float pct=float(julia(convert(st), convert(u_mouse)));
 	
-	vec3 color=vec3(y);
-	
-	// Plot a line
-	float pct=plot(st);
-	color=(1.-pct)*color+pct*vec3(0.,1.,0.);
-	
-	gl_FragColor=vec4(color,1.);
+	gl_FragColor=vec4(0, pct/100., pct/50.,1.);
 }
